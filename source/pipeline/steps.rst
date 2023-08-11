@@ -5,7 +5,7 @@ Extractor_flow pipeline consists of XX different steps.
 
 The very first step is to check if the original data (anatomical T1 and whole brain tractogram) are already in the MNI stereotactic space. If not, the brain is first extracted on the participant's T1 image if necessary (antsBrainExtraction.sh) and then realigned to the T1 image of the JHU template (antsRegistrationSyN.sh) using ANTs tools (Avants et al., 2009). Both linear and non-linear registration matrices are then applied to the tractogram (scil_apply_transform_to_tractogram.py).
 
-.. image:: ../data/extractor_flow_graph.png
+.. image:: ../data/tractoflow_graph.png
    :scale: 40 %
    :align: right
 
@@ -13,7 +13,7 @@ Step 1
 ------
  The first filtering step is to remove the streamlines that are out of the volume bounding box (<font color="#0099FF">**scil_remove_invalid_streamlines.py**</font>). No negative coordinate and no above volume dimension coordinate are possible in voxel space. Any streamline that does not respect these two conditions is cut to keep its most extended segment within the bounding box. Note that this step is skipped if the original whole-brain tractogram was built within the TractoFlow framework (<font color="#0099FF">Theaud et al., 2020</font>) that already runs this step.
 
-.. image:: ../data/extractor_flow_graph.png
+.. image:: ../data/tractoflow_graph.png
    :scale: 40 %
    :align: right
 
