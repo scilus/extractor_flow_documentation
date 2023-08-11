@@ -11,12 +11,11 @@ The very first step is to check if the original data (anatomical T1 and whole br
 
 Step 1
 ------
- The first filtering step is to remove the streamlines that are out of the volume bounding box (<font color="#0099FF">**scil_remove_invalid_streamlines.py**</font>). No negative coordinate and no above volume dimension coordinate are possible in voxel space. Any streamline that does not respect these two conditions is cut to keep its most extended segment within the bounding box. Note that this step is skipped if the original whole-brain tractogram was built within the TractoFlow framework (<font color="#0099FF">Theaud et al., 2020</font>) that already runs this step.
+ The first filtering step is to remove the streamlines that are out of the volume bounding box `scil_remove_invalid_streamlines.py <https://scilpy.readthedocs.io/en/latest/scripts/scil_remove_invalid_streamlines.html>`_. No negative coordinate and no above volume dimension coordinate are possible in voxel space. Any streamline that does not respect these two conditions is cut to keep its most extended segment within the bounding box. Note that this step is skipped if the original whole-brain tractogram was built within the TractoFlow framework (<font color="#0099FF">Theaud et al., 2020</font>) that already runs this step.
 
 .. image:: ../data/tractoflow_graph.png
    :scale: 40 %
    :align: right
-
 
 Step 2
 ------
