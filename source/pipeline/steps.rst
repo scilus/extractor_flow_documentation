@@ -3,23 +3,23 @@ Processing steps
 
 Extractor_flow pipeline consists of XX different steps.
 
-The very first step is to check if the original data (anatomical T1 and whole brain tractogram) are already in the MNI stereotactic space. If not, the brain is first extracted on the participant's T1 image if necessary (antsBrainExtraction.sh) and then realigned to the T1 image of the JHU template (antsRegistrationSyN.sh) using ANTs tools (Avants et al., 2009). Both linear and non-linear registration matrices are then applied to the tractogram (scil_apply_transform_to_tractogram.py).
+The very first step is to check if the original data (anatomical T1 and whole brain tractogram) are already in the MNI stereotactic space. If not, the brain is first extracted on the participant's T1 image if necessary `(antsBrainExtraction.sh) <https://github.com/ANTsX/ANTs/blob/master/Scripts/antsBrainExtraction.sh>`_ and then realigned to the T1 image of the JHU template `(antsRegistrationSyN.sh) <https://github.com/ANTsX/ANTs/blob/master/Scripts/antsRegistrationSyN.sh>`_ using ANTs tools **(Avants et al., 2009)**. Both linear and non-linear registration matrices are then applied to the tractogram `(scil_apply_transform_to_tractogram.py) <https://scilpy.readthedocs.io/en/latest/scripts/scil_apply_transform_to_tractogram.html>`_.
 
 .. image:: ../data/tractoflow_graph.png
-   :scale: 40 %
+   :scale: 20 %
    :align: right
 
 Step 1
 ------
- The first filtering step is to remove the streamlines that are out of the volume bounding box `scil_remove_invalid_streamlines.py <https://scilpy.readthedocs.io/en/latest/scripts/scil_remove_invalid_streamlines.html>`_. No negative coordinate and no above volume dimension coordinate are possible in voxel space. Any streamline that does not respect these two conditions is cut to keep its most extended segment within the bounding box. Note that this step is skipped if the original whole-brain tractogram was built within the TractoFlow framework (<font color="#0099FF">Theaud et al., 2020</font>) that already runs this step.
-
-.. image:: ../data/tractoflow_graph.png
-   :scale: 40 %
-   :align: right
+ The first filtering step is to remove the streamlines that are out of the volume bounding box `(scil_remove_invalid_streamlines.py) <https://scilpy.readthedocs.io/en/latest/scripts/scil_remove_invalid_streamlines.html>`_. No negative coordinate and no above volume dimension coordinate are possible in voxel space. Any streamline that does not respect these two conditions is cut to keep its most extended segment within the bounding box. Note that this step is skipped if the original whole-brain tractogram was built within the TractoFlow framework **(Theaud et al., 2020)** that already runs this step.
 
 Step 2
 ------
-This step consists of filtering the streamlines according to their geometrical and anatomical ending properties (<font color="#0099FF">**scil_filter_tractogram_anatomically.py**</font>). It is performed sequentially in four sub-steps, each processing the data on the output of the previous one. It first removes the streamlines with a length shorter than 20 mm. It then removes streamlines making a loop of 360°. The third sub-step filters out the streamlines traveling through the main sulci of the JHU template by using an adapted ROI (<font color="#0099FF">**JHU_MIN_all_shell_limits_f.nii.gz**</font>) built with the gyral shells (Cf. additional JHU template ROIs). The last sub-step is filtering out the streamlines with at least one termination within the deep WM ROIs of the JHU template by keeping the streamlines with both ends in an adapted ROI encompassing all the ROIs of the JHU template except the DWM ones (<font color="#0099FF">**JHU_MNI_all_noDWM.nii.gz**</font>).
+This step consists of filtering the streamlines according to their geometrical and anatomical ending properties `(scil_filter_tractogram_anatomically.py) <https://scilpy.readthedocs.io/en/latest/scripts/scil_filter_tractogram_anatomically.html>`_. 
+It is performed sequentially in four sub-steps, each processing the data on the output of the previous one. 
+It first removes the streamlines with a length shorter than 20 mm. It then removes streamlines making a loop of 360°. 
+The third sub-step filters out the streamlines traveling through the main sulci of the JHU template by using an adapted ROI *(JHU_MIN_all_shell_limits_f.nii.gz)* built with the gyral shells (Cf. additional JHU template ROIs).
+The last sub-step is filtering out the streamlines with at least one termination within the deep WM ROIs of the JHU template by keeping the streamlines with both ends in an adapted ROI encompassing all the ROIs of the JHU template except the DWM ones *(JHU_MNI_all_noDWM.nii.gz)*.
 
 Step 3
 ------
