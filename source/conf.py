@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'TractoFlow-documentation'
+project = u'Extractor_flow-documentation'
 copyright = u'2022, SCIL'
 author = u'SCIL'
 
@@ -110,7 +110,7 @@ html_extra_path = ["data/install.sh", "data/logo_bg.png"]
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'TractoFlow-documentationdoc'
+htmlhelp_basename = 'Extractor_flow-documentationdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -137,7 +137,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'TractoFlow-documentation.tex', u'TractoFlow-documentation Documentation',
+    (master_doc, 'Extractor_flow-documentation.tex', u'Extractor_flow-documentation Documentation',
      u'SCIL', 'manual'),
 ]
 
@@ -147,7 +147,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'tractoflow-documentation', u'TractoFlow-documentation Documentation',
+    (master_doc, 'Extractor_flow-documentation', u'Extractor_flow-documentation Documentation',
      [author], 1)
 ]
 
@@ -158,8 +158,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'TractoFlow-documentation', u'TractoFlow-documentation Documentation',
-     author, 'TractoFlow-documentation', 'One line description of project.',
+    (master_doc, 'Extractor_flow-documentation', u'Extractor_flow-documentation Documentation',
+     author, 'Extractor_flow-documentation', 'One line description of project.',
      'Miscellaneous'),
 ]
 
